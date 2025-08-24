@@ -100,7 +100,7 @@ const Cart = () => {
 
               <div className="flex items-center space-x-4">
                 <span className="text-lg font-semibold">
-                  $
+                  ₹
                   {((item?.plant?.price || 0) * (item?.quantity || 0)).toFixed(
                     2
                   )}
