@@ -2,7 +2,7 @@ import { Cart } from "../models/cart.model.js";
 import { Plant } from "../models/plant.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { asyncHandler } from "../utils/AsyncHandler.js";
 
 // 🔹 Add item to cart
 const addToCart = asyncHandler(async (req, res) => {
@@ -17,7 +17,7 @@ const addToCart = asyncHandler(async (req, res) => {
   if (!plant) throw new ApiError(404, "Plant not found");
 
   let cart = await Cart.findOne({ user: userId });
-  
+
   if (!cart) {
     cart = await Cart.create({
       user: userId,

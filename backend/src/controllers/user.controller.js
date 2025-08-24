@@ -1,5 +1,5 @@
 import { ApiError } from "../utils/ApiError.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { asyncHandler } from "../utils/AsyncHandler.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
@@ -41,7 +41,8 @@ const generateAccessAndRefreshTokens = async (userId) => {
 // 🔹 Send OTP & auto-register if user doesn't exist
 const sendOtp = asyncHandler(async (req, res) => {
   const { email, username, fullName, role } = req.body;
-  if (!(email || username)) throw new ApiError(400, "Email or Username is required");
+  if (!(email || username))
+    throw new ApiError(400, "Email or Username is required");
 
   let user = await User.findOne({ email });
 
@@ -65,7 +66,7 @@ const sendOtp = asyncHandler(async (req, res) => {
   user.otpCode = otp;
   user.otpExpiry = Date.now() + 5 * 60 * 1000; // 5 min expiry
   await user.save();
-  console.log("this is user",user);
+  console.log("this is user", user);
   await sendEmail(
     email,
     "Your OTP Code",
@@ -80,7 +81,8 @@ const sendOtp = asyncHandler(async (req, res) => {
 // 🔹 Verify OTP & login
 const verifyOtp = asyncHandler(async (req, res) => {
   const { email, username, otp } = req.body;
-  if (!(email || username) || !otp) throw new ApiError(400, "Email or Username and OTP are required");
+  if (!(email || username) || !otp)
+    throw new ApiError(400, "Email or Username and OTP are required");
 
   const user = await User.findOne({ email });
   if (!user) throw new ApiError(404, "User not found");

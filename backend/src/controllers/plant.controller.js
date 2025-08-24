@@ -1,18 +1,18 @@
 import { Plant } from "../models/plant.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import {uploadOnCloudinary} from "../utils/cloudinary.js";
+import { asyncHandler } from "../utils/AsyncHandler.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 const createPlant = asyncHandler(async (req, res) => {
   let { name, price, categories, inStock, description } = req.body;
 
-  console.log('🌱 Creating plant with data:', {
+  console.log("🌱 Creating plant with data:", {
     name,
     price,
     categories,
     inStock,
     description,
-    file: req.file ? req.file.filename : 'No file'
+    file: req.file ? req.file.filename : "No file",
   });
 
   if (!name || !price || !categories || inStock === undefined) {
@@ -26,9 +26,9 @@ const createPlant = asyncHandler(async (req, res) => {
     categories = [categories];
   }
 
-  console.log('📝 Processed categories:', categories);
+  console.log("📝 Processed categories:", categories);
 
-    // Upload image to Cloudinary
+  // Upload image to Cloudinary
   let imageUrl = null;
   if (req.file) {
     imageUrl = await uploadOnCloudinary(req.file.path); // req.file.path comes from multer
@@ -38,11 +38,11 @@ const createPlant = asyncHandler(async (req, res) => {
     price,
     categories,
     inStock,
-    description: description || '', // Make description optional
+    description: description || "", // Make description optional
     imageUrl,
   });
 
-  console.log('✅ Plant created successfully:', plant);
+  console.log("✅ Plant created successfully:", plant);
 
   return res
     .status(201)
