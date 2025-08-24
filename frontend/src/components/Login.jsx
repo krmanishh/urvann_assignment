@@ -117,7 +117,7 @@ const Login = () => {
           </h2>
           <p className="text-muted-foreground">
             {step === "email"
-              ? "Sign in to your FloraVibe account"
+              ? "Sign in to your FloraDeal account"
               : "Enter the code we sent to your email"}
           </p>
         </div>

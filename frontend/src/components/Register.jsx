@@ -129,7 +129,7 @@ const Register = () => {
             <Leaf className="w-8 h-8 text-primary" />
           </div>
           <h2 className="text-3xl font-bold text-card-foreground mb-2">
-            {step === "details" ? "Join FloraVibe" : "Verify Your Email"}
+            {step === "details" ? "Join FloraDeal" : "Verify Your Email"}
           </h2>
           <p className="text-muted-foreground">
             {step === "details"
@@ -204,11 +204,11 @@ const Register = () => {
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-300 text-foreground"
               >
-                <option value="user">Plant Enthusiast</option>
-                <option value="admin">Store Administrator</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
               </select>
               <p className="text-xs text-muted-foreground mt-2">
-                Choose 'Store Administrator' if you need management access
+                Choose 'Admin' if you need management access
               </p>
             </div>
 
