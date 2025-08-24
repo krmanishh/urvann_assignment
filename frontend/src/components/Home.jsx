@@ -50,8 +50,8 @@ const Home = () => {
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
-            <span className="text-green-600">Plant</span>
-            <span className="text-emerald-500">Haven</span>
+            <span className="text-green-600">Flora</span>
+            <span className="text-emerald-500">Deal</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-600 mb-3 max-w-2xl mx-auto font-medium">
@@ -79,7 +79,7 @@ const Home = () => {
               className="bg-white text-green-700 px-6 py-3 rounded-lg text-base font-medium border-2 border-green-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200 flex items-center space-x-2"
             >
               <Heart className="w-4 h-4" />
-              <span>Join Us</span>
+              <span>Login</span>
             </Link>
           </div>
         </div>

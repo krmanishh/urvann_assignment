@@ -27,7 +27,7 @@ const Navbar = () => {
             <div className="bg-primary text-primary-foreground p-2 rounded-xl">
               <Leaf className="w-6 h-6" />
             </div>
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">FloraVibe</span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">FloraDeal</span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">

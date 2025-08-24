@@ -72,7 +72,7 @@ const PlantCard = ({ plant }) => {
 
         <div className="flex items-center justify-between mb-4">
           <span className="text-2xl font-bold text-primary">
-            ${plant.price}
+            ₹{plant.price}
           </span>
         </div>
 
