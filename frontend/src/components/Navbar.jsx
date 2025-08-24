@@ -1,69 +1,76 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../Redux/authSlice";
+"use client"
+
+import { useSelector, useDispatch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { logout } from "../Redux/authSlice"
+import { Leaf, ShoppingCart, User, LogOut, Home, Package } from "lucide-react"
 
 const Navbar = () => {
-  const { isAuthenticated, role } = useSelector((state) => state.auth);
-  const cartItems = useSelector((state) => state.cart.items); // ✅ cart items from redux
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { isAuthenticated, role } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
-    console.log("🚪 User logging out...");
-    dispatch(logout());
-    navigate("/");
-  };
+    console.log("🚪 User logging out...")
+    dispatch(logout())
+    navigate("/")
+  }
 
   return (
-    <nav className="bg-green-600 text-white shadow-lg">
+    <nav className="bg-card border-b border-border shadow-sm sticky top-0 z-50 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="text-2xl font-bold">
-            🌱 Plant Store
+          <Link
+            to="/"
+            className="flex items-center space-x-3 text-2xl font-bold text-primary hover:text-secondary transition-colors"
+          >
+            <div className="bg-primary text-primary-foreground p-2 rounded-xl">
+              <Leaf className="w-6 h-6" />
+            </div>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">FloraVibe</span>
           </Link>
 
-          <div className="flex space-x-6">
-            <Link to="/" className="hover:text-green-200 transition-colors">
-              Home
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors font-medium"
+            >
+              <Home className="w-4 h-4" />
+              <span>Home</span>
             </Link>
             <Link
               to="/catalog"
-              className="hover:text-green-200 transition-colors"
+              className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors font-medium"
             >
-              Catalog
+              <Package className="w-4 h-4" />
+              <span>Catalog</span>
             </Link>
             {isAuthenticated && (
               <Link
                 to="/cart"
-                className="relative hover:text-green-200 transition-colors"
+                className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors font-medium"
               >
-                Cart
-                {cartItems.length > 0 && (
-                  <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold px-1 py-0.25 rounded-full">
-                    {cartItems.length}
-                  </span>
-                )}
+                <ShoppingCart className="w-4 h-4" />
+                <span>Cart</span>
               </Link>
             )}
             {isAuthenticated && role === "admin" && (
               <Link
                 to="/admin"
-                className="hover:text-green-200 transition-colors"
+                className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors font-medium"
               >
-                Admin
+                <User className="w-4 h-4" />
+                <span>Admin</span>
               </Link>
             )}
             {!isAuthenticated ? (
-              <div className="flex space-x-4">
-                <Link
-                  to="/login"
-                  className="hover:text-green-200 transition-colors"
-                >
+              <div className="flex items-center space-x-4">
+                <Link to="/login" className="text-foreground hover:text-primary transition-colors font-medium">
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="hover:text-green-200 transition-colors"
+                  className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-secondary transition-colors font-medium"
                 >
                   Register
                 </Link>
@@ -72,15 +79,17 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to="/profile"
-                  className="hover:text-green-200 transition-colors"
+                  className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors font-medium"
                 >
-                  Profile
+                  <User className="w-4 h-4" />
+                  <span>Profile</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="hover:text-green-200 transition-colors"
+                  className="flex items-center space-x-2 text-foreground hover:text-destructive transition-colors font-medium"
                 >
-                  Logout
+                  <LogOut className="w-4 h-4" />
+                  <span>Logout</span>
                 </button>
               </div>
             )}
@@ -88,7 +97,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

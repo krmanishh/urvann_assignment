@@ -2,7 +2,7 @@ import { Plant } from "../models/plant.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-
+import {uploadOnCloudinary} from "../utils/cloudinary.js";
 const createPlant = asyncHandler(async (req, res) => {
   let { name, price, categories, inStock, description } = req.body;
 
@@ -28,8 +28,11 @@ const createPlant = asyncHandler(async (req, res) => {
 
   console.log('📝 Processed categories:', categories);
 
-  let imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
-
+    // Upload image to Cloudinary
+  let imageUrl = null;
+  if (req.file) {
+    imageUrl = await uploadOnCloudinary(req.file.path); // req.file.path comes from multer
+  }
   const plant = await Plant.create({
     name,
     price,

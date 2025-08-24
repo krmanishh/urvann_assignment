@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import BottomBar from "./components/BottomBar"
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <main className="container mx-auto px-4 py-8">
         <Outlet />
       </main>
+      <BottomBar />
     </div>
   );
 }
