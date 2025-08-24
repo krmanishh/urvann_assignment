@@ -30,7 +30,7 @@ const Profile = () => {
             Your Profile
           </h1>
           <p className="text-muted-foreground">
-            Manage your FloraVibe account information
+            Manage your FloraDeal account information
           </p>
         </div>
 
@@ -88,8 +88,8 @@ const Profile = () => {
                 }`}
               >
                 {user.role === "admin"
-                  ? "Store Administrator"
-                  : "Plant Enthusiast"}
+                  ? "Admin"
+                  : "User"}
               </span>
             </div>
           </div>
